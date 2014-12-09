@@ -18,9 +18,9 @@ public:
 	LLN * getHead();
 	void setHead(LLN *Head);
 	void setHead(string s);
-	void addTitle(string s);
+	string addTitle(string s);
 	void print();
-	void removeTitle(string s);
+	string removeTitle(string s);
 };
 
 

@@ -8,9 +8,7 @@ using namespace std;
 
 
 LLN::LLN(string s) {
-	cout << "stuff";
 	S = s;
-	cout << "things";
 	next = NULL;
 }
 
@@ -30,9 +28,9 @@ void LLN::setNext(LLN *n) {
 	next = n;
 }
 
-void LLN::addTitle(string s, LLN *prev, LL *l) {
+string LLN::addTitle(string s, LLN *prev, LL *l) {
 	if (s == S)
-		return;
+		return s;
 	else if (s < S) {
 		LLN *t = new LLN(s);
 		t->setNext(this);
@@ -40,11 +38,14 @@ void LLN::addTitle(string s, LLN *prev, LL *l) {
 			prev->setNext(t);
 		else
 			l->setHead(t);
+		return s;
 	}
 	else if (next)
-		next->addTitle(s,this,l);
-	else
+		return next->addTitle(s,this,l);
+	else	{
 		setNext(s);
+		return s;
+	}
 }
 
 void LLN::print() {
@@ -53,7 +54,7 @@ void LLN::print() {
 		next->print();
 } 
 
-void LLN::removeTitle(string s, LLN *prev, LL *l) {
+string LLN::removeTitle(string s, LLN *prev, LL *l) {
 	if (checkForSub(S,s,0)) {
 		if (prev)
 			prev->setNext(next);
@@ -62,20 +63,24 @@ void LLN::removeTitle(string s, LLN *prev, LL *l) {
 		next = NULL;
 		delete this;
 		if (prev)
-			prev->removeTitle(s,NULL,l);
+			return prev->removeTitle(s,NULL,l);
 		else
-			l->removeTitle(s);
+			return l->removeTitle(s);
+		return s;
 	}
 	else if (next)
-		next->removeTitle(s,this,l);
+		return next->removeTitle(s, this, l);
+	else
+		return "ERROR";
 }
 
 bool LLN::checkForSub(string s, string q, long long c)	{
 	bool a = false;
-	if (c + q.length() < s.length())
-		if (s.substr(c,q.length()) == q)
-			a = true;
-		else
-			a = checkForSub(s,q,c+1);
+	if (s == q)
+		return true;
+	if (c + q.length() < s.length() && !a)
+		a = (s.substr(c, q.length()) == q);
+	if (!a)
+		a = checkForSub(s,q,c+1);
 	return a;
 }

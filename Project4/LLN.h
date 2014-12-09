@@ -19,9 +19,9 @@ public:
 	LLN * getNext();
 	void setNext(string s);
 	void setNext(LLN *n);
-	void addTitle(string s, LLN *prev, LL *l);
+	string addTitle(string s, LLN *prev, LL *l);
 	void print();
-	void removeTitle(string s, LLN *prev, LL *l);
+	string removeTitle(string s, LLN *prev, LL *l);
 	bool checkForSub(string s, string q, long long c);
 };
 

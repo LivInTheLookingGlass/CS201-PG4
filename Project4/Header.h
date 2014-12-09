@@ -14,10 +14,10 @@ class LLN;
 LL *l;
 
 int main();
-int getInput();
+string getInput();
 string getCaps(string s);
-int addTitle();
-int removeTitle();
-int print();
+string addTitle(string s);
+string removeTitle(string s);
+string print();
 
 #endif

@@ -11,57 +11,49 @@ int main()	{
 	l = new LL();
 	int loopcontrol = 1;
 	cout << "Commands: add, remove, print, exit" << endl;
-	for (int i = 1; i != 0; i = getInput());
+	for (string i = ""; i != "EXIT"; i = getInput());
 	cout << "On it, boss!" << endl;
 	delete l;
 	system("pause");
 	return 0;
 }
 
-int getInput() {
+string getInput() {
 	cout << "command:" << endl;
 	string s;
 	getline(cin,s);
 	s = getCaps(s);
 	if (s == "EXIT")
-		return 0;
-	else if (s == "ADD")
-		return addTitle();
-	else if (s == "REMOVE")
-		return removeTitle();
-	else if (s == "PRINT")
-		return print();
+		return "EXIT";
+	else if ((string)s.substr(0,3) == "ADD" && s != "ADD")
+		return addTitle((string)s.substr(5, (int)s.length() - 6));
+	else if ((string)s.substr(0, 6) == "REMOVE" && s != "REMOVE")
+		return removeTitle((string)s.substr(8, (int)s.length() - 9));
+	else if (s == "PRINT")	{
+		print();
+		return "PRINT";
+	}
 	else {
-		cout << endl << "Unknown command.  You suck." << endl;
-		return 2;
+		cout << endl << "Unknown command or not enough arguments" << endl;
+		return "UNKNOWN";
 	}
 }
 
-int addTitle() {
-	cout << "title?" << endl;
-	string s;
-	getline(cin,s);
-	s = getCaps(s);
-	l->addTitle(s);
-	return 1;
+string addTitle(string s) {
+	return l->addTitle(s);
 } 
 
-int removeTitle() {
-	cout << "substring?" << endl;
-	string s;
-	getline(cin,s);
-	s = getCaps(s);
-	l->removeTitle(s);
-	return 1;
+string removeTitle(string s) {
+	return l->removeTitle(s);
 }
 
-int print() {
+string print() {
 	l->print();
-	return 1;
+	return "PRINT";
 } 
 
 string getCaps(string s) {
-	for (int i = 0; i < s.length(); i++) {
+	for (int i = 0; i < (int)s.length(); i++) {
 		if (s[i] >= 'a' && s[i] <= 'z')
 			s[i] = s[i] - 'a' + 'A';
 	}

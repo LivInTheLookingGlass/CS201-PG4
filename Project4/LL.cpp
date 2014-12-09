@@ -26,12 +26,13 @@ LLN * LL::getHead() {
 	return head;
 }
 
-void LL::addTitle(string s) {
-	cout << "shit";
+string LL::addTitle(string s) {
 	if (head)
-		head->addTitle(s,NULL,this);
-	else
+		return head->addTitle(s,NULL,this);
+	else	{
 		head = new LLN(s);
+		return s;
+	}
 }
 
 void LL::print() {
@@ -39,7 +40,8 @@ void LL::print() {
 		head->print();
 }
 
-void LL::removeTitle(string s) {
+string LL::removeTitle(string s) {
 	if (head)
-		head->removeTitle(s,NULL,this);
+		return head->removeTitle(s,NULL,this);
+	return "ERROR";
 }
