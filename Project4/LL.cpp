@@ -1,3 +1,6 @@
+//Gabe Appleton
+//This file contains all the commands that a Linked List can use
+
 #include <cstdlib>
 #include <string>
 #include <iostream>

@@ -1,3 +1,6 @@
+//Gabe Appleton
+//This is the main file for the Linked List Node. It contains all requisite commands
+
 #include <cstdlib>
 #include <string>
 #include <iostream>
@@ -55,7 +58,7 @@ void LLN::print() {
 } 
 
 string LLN::removeTitle(string s, LLN *prev, LL *l) {
-	if (checkForSub(S,s,0)) {
+	if (checkForSub(S, s, 0)) {
 		if (prev)
 			prev->setNext(next);
 		else
@@ -63,11 +66,13 @@ string LLN::removeTitle(string s, LLN *prev, LL *l) {
 		next = NULL;
 		delete this;
 		if (prev)
-			return prev->removeTitle(s,NULL,l);
+			return prev->removeTitle(s, NULL, l);
 		else
 			return l->removeTitle(s);
 		return s;
 	}
+	else if (next && next->get() > s)
+		return s;
 	else if (next)
 		return next->removeTitle(s, this, l);
 	else
@@ -80,7 +85,11 @@ bool LLN::checkForSub(string s, string q, long long c)	{
 		return true;
 	if (c + q.length() < s.length() && !a)
 		a = (s.substr(c, q.length()) == q);
-	if (!a)
+	if (c + q.length() < s.length() && !a)
 		a = checkForSub(s,q,c+1);
 	return a;
+}
+
+string LLN::get()	{
+	return S;
 }

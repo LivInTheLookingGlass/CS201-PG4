@@ -1,6 +1,11 @@
+//Gabe Appleton
+//This is the main file
+//This program keeps a record of a "library" in an ordered linked list
+
 #include <cstdlib>
 #include <string>
 #include <iostream>
+#include <fstream>
 #include "Header.h"
 #include "LL.h"
 
@@ -11,7 +16,8 @@ int main()	{
 	l = new LL();
 	int loopcontrol = 1;
 	cout << "Commands: add, remove, print, exit" << endl;
-	for (string i = ""; i != "EXIT"; i = getInput());
+	for (string i = ""; i != "EXIT"; i = getInput())
+		;
 	cout << "On it, boss!" << endl;
 	delete l;
 	system("pause");
